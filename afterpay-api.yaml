@@ -1,4 +1,47 @@
 apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: afterpay-team
+  namespace: customer
+  description: AfterPay team which handles AfterPay transactions.
+spec:
+  type: team
+  profile:
+    displayName: AfterPay Team
+  parent: group:customer/services-team
+  children: []
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: afterpay
+  title: AfterPay
+  namespace: customer
+  description: "AfterPay Company"
+  tags:
+   - after-pay
+spec:
+  owner: group:customer/afterpay-team
+  domain: customer/services
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: afterpay-api-service
+  title: After Pay API Service
+  namespace: customer
+  description: "After APIs"
+spec:
+  type: service
+  lifecycle: production
+  owner: group:customer/afterpay-team
+  system: customer/afterpay
+  providesApis:
+   - afterpay-api
+
+---
+apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: afterpay-api
@@ -11,22 +54,4 @@ spec:
   owner: group:customer/payments-team
   system: customer/payments
   dependencyOf:
-    - payments-v1-afterpay-token-api
-
----
-apiVersion: backstage.io/v1alpha1
-kind: API
-metadata:
-  name: payments-v1-afterpay-token-api
-  title: Payments V1 AfterPay Token API
-  namespace: customer
-  description: This API gets token from AfterPay
-spec:
-  type: openapi
-  lifecycle: production
-  owner: group:customer/payments-team
-  system: customer/payments
-  definition:
-    $text: https://github.com/stanleyhor/payments/blob/master/api-docs.yaml
-  dependsOn:
-   - component:customer/afterpay-api
+    - component:afterpay-api-service
