@@ -125,5 +125,5 @@ spec:
   owner: group:customer/payments-team
   system: customer/payments
   definition:
-    $text: https://payments-auth-service-prod.int-pr.ae-gcp.io/v3/api-docs.yaml
---- null
+    $text: http://localhost:8080/v3/api-docs.yaml
+--- 
