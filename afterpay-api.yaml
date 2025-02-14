@@ -17,16 +17,19 @@ spec:
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: API
+kind: Component
 metadata:
-  name: afterpay-checkouts-api
-  title: AfterPay Checkouts API
+  name: afterpay-token-api
+  title: AfterPay Token API
   namespace: customer
-  description: AfterPay provides API token
+  description: "The Payments Auth Service handles payments authorizations and getting\
+    \ auth token for multiple gateways, like AfterPay, ApplePay and PayPal (Braintree/Adyen)"
+  annotations:
+    backstage.io/kubernetes-namespace: payments-auth-service
+  links:
+    - https://developers.afterpay.com/docs/api/reference/checkouts/operations/create-a-v-2-checkout
 spec:
-  type: website
+  type: service
   lifecycle: production
   owner: group:customer/payments-team
   system: customer/payments
-  definition:
-    $text: https://developers.afterpay.com/docs/api/reference/checkouts/operations/create-a-v-2-checkout
