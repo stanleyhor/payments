@@ -26,7 +26,7 @@ metadata:
 spec:
   type: service
   lifecycle: production
-  owner: group:customer/outfitters-team
-  system: customer/outfitters
+  owner: group:customer/payments-team
+  system: customer/payments
   dependencyOf:
     - component:customer/aem
