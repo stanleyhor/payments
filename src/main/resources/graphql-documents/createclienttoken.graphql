@@ -1,6 +1,0 @@
-mutation CreateClientToken ($input: CreateClientTokenInput) {
-    createClientToken(input: $input) {
-        clientMutationId
-        clientToken
-    }
-}

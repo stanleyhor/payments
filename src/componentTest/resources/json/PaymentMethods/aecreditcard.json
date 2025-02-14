@@ -1,7 +1,0 @@
-{
-  "paymentMethod": {
-	"type": "creditCard",
-	"encryptedCardNumber": "test_6044100608888392",
-    "encryptedSecurityCode": "test_505"
-  }
-}
