@@ -1,12 +1,12 @@
 apiVersion: backstage.io/v1alpha1
-kind: Resource
+kind: Component
 metadata:
   name: afterpay-api
   title: AfterPay API
   namespace: customer
   description: AfterPay API
 spec:
-  type: external-api
+  type: service
   lifecycle: production
   owner: group:customer/payments-team
   system: customer/payments
@@ -27,4 +27,4 @@ spec:
   definition:
     $text: https://github.com/stanleyhor/payments/blob/master/api-docs.yaml
   dependsOn:
-   - resource:customer/afterpay-api
+   - component:customer/afterpay-api
