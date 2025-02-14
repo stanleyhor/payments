@@ -14,31 +14,19 @@ spec:
     $text: https://github.com/stanleyhor/payments/blob/master/api-docs.yaml
   dependsOn:
    - resource:customer/afterpay-token-api
-
+ 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Group
-metadata:
-  name: afterpay-team
-  namespace: customer
-  description: AfterPay Team reponsibile for maintaining payments domain.
-spec:
-  type: team
-  profile:
-    displayName: AfterPay Team
-  parent: group:customer/services-team
-  children: []
-  
----
-apiVersion: backstage.io/v1alpha1
-kind: Resource
+kind: Component
 metadata:
   name: afterpay-token-api
   title: AfterPay Token API
-  namespace: customer
+  namespace: customer # This would align with pillar at AEO
   description: AfterPay Token API
 spec:
-  type: third-party
+  type: service
   lifecycle: production
-  owner: group:customer/afterpay-team
-  system: customer/payments
+  owner: group:customer/outfitters-team
+  system: customer/outfitters
+  dependencyOf:
+    - component:customer/aem
