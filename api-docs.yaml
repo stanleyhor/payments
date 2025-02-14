@@ -1,0 +1,1704 @@
+openapi: 3.0.1
+info:
+  title: AEO Payment API
+  license:
+    name: AEO Internal Use Only
+  version: "1.0"
+externalDocs:
+  description: payments Service Wiki Documentation
+  url: https://wiki.ae.com/display/MSAT/MSAT+Payments+API+Calls
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+paths:
+  /pubsub/emulator/{publisherBeanName}/submit:
+    post:
+      tags:
+      - aeo-pubsub-emulator-rest-controller
+      operationId: submitToPubsub
+      parameters:
+      - name: publisherBeanName
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/xml:
+            schema:
+              type: string
+          application/json:
+            schema:
+              type: string
+          '*/*':
+            schema:
+              type: string
+          text/plain:
+            schema:
+              type: string
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentDetailsResponse"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+        "422":
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+  /pubsub/emulator/{projectId}/{topicName}/submit:
+    post:
+      tags:
+      - aeo-pubsub-emulator-rest-controller
+      operationId: submitToPubsub_1
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: topicName
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/xml:
+            schema:
+              type: string
+          application/json:
+            schema:
+              type: string
+          '*/*':
+            schema:
+              type: string
+          text/plain:
+            schema:
+              type: string
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentDetailsResponse"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+        "422":
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+  /payments/v2/details:
+    post:
+      tags:
+      - payment-auth-v-2-controller
+      operationId: fetchPaymentDetails
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/PaymentDetailsRequest"
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentDetailsResponse"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+        "422":
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentDetailsResponse"
+  /payments/v2/auth:
+    post:
+      tags:
+      - payment-auth-v-2-controller
+      operationId: authorize
+      parameters:
+      - name: aeSite
+        in: header
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/ATGAuthRequest"
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentDetailsResponse"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+        "422":
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ATGAuthResponse"
+  /payments/v2/auth/paypal:
+    post:
+      tags:
+      - payment-auth-v-2-controller
+      operationId: authorizePaypal
+      parameters:
+      - name: aeSite
+        in: header
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/ATGAuthRequest"
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentDetailsResponse"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+        "422":
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ATGAuthResponse"
+  /payments/v2/auth/applePay:
+    post:
+      tags:
+      - payment-auth-v-2-controller
+      operationId: authorizeApplePay
+      parameters:
+      - name: aeSite
+        in: header
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/ATGAuthRequest"
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentDetailsResponse"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+        "422":
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ATGAuthResponse"
+  /payments/v1/paypal/authpayment:
+    post:
+      tags:
+      - bt-paypal-controller
+      summary: BT Payment Paypal Auth Payment
+      description: Make a BT paypal auth Payment call
+      operationId: authorizePayment
+      parameters:
+      - name: aeSite
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthorizationRequest"
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentDetailsResponse"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+        "422":
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+        "200":
+          description: BT Payment Paypal Auth Payment successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthorizeResponse"
+        "400,422,503":
+          description: BT Payment Paypal Auth Payment failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthorizeResponse"
+  /payments/v1/paypal/auth:
+    post:
+      tags:
+      - bt-paypal-controller
+      summary: BT Payment Paypal Auth
+      description: Make a BT paypal auth call
+      operationId: authorizePaypal_1
+      parameters:
+      - name: aeSite
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthorizationRequest"
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentDetailsResponse"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+        "422":
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+        "200":
+          description: BT Payment Paypal Auth successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaypalAuthResponse"
+        "400,422,503":
+          description: BT Payment Paypal Auth failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaypalAuthResponse"
+  /payments/v1/details:
+    post:
+      tags:
+      - payment-auth-controller
+      operationId: paymentDetails
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/PaymentDetailsRequest"
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentDetailsResponse"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+        "422":
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentDetailsResponse"
+  /payments/v1/auth:
+    post:
+      tags:
+      - payment-auth-controller
+      operationId: authorizePayment_1
+      parameters:
+      - name: aeSite
+        in: header
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/ATGAuthRequest"
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentDetailsResponse"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+        "422":
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ATGAuthResponse"
+  /payments/v1/auth/paypal:
+    post:
+      tags:
+      - payment-auth-controller
+      operationId: authorizePaypal_2
+      parameters:
+      - name: aeSite
+        in: header
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/ATGAuthRequest"
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentDetailsResponse"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+        "422":
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ATGAuthResponse"
+  /payments/v1/auth/applePay:
+    post:
+      tags:
+      - payment-auth-controller
+      operationId: authorizeApplePay_1
+      parameters:
+      - name: aeSite
+        in: header
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/ATGAuthRequest"
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentDetailsResponse"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+        "422":
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ATGAuthResponse"
+  /payments/v1/afterpay/token:
+    post:
+      tags:
+      - afterpay-controller
+      summary: Get Token
+      description: Make a create checkout call
+      operationId: fetchToken
+      parameters:
+      - name: aeSite
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/ATGAuthRequest"
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentDetailsResponse"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+        "422":
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+        "400,422,503":
+          description: Get token for afterpay or cashApp pay failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AfterpayCheckoutResponse"
+        "200":
+          description: Get token for afterpay or cashApp pay successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AfterpayCheckoutResponse"
+  /payments/v1/afterpay/auth:
+    post:
+      tags:
+      - afterpay-controller
+      summary: Authorize
+      description: Make a authorize call
+      operationId: authorizePayment_2
+      parameters:
+      - name: aeSite
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/PaymentDetailsRequest"
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentDetailsResponse"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+        "422":
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+        "200":
+          description: Authorize afterpay or cashApp pay successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AfterpayAuthResponse"
+        "400,422,503":
+          description: Authorize afterpay or cashApp pay failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AfterpayAuthResponse"
+  /internal/payments/v1/authorization:
+    post:
+      tags:
+      - internal-auth-controller
+      operationId: internalAuthorization
+      parameters:
+      - name: aeSite
+        in: header
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/ATGAuthRequest"
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentDetailsResponse"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+        "422":
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ATGAuthResponse"
+  /payments/v1/paypal/token:
+    get:
+      tags:
+      - bt-paypal-controller
+      summary: BT Payment Paypal Auth
+      description: Make a BT paypal auth call
+      operationId: getPayPalClientToken
+      parameters:
+      - name: aeSite
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentDetailsResponse"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+        "422":
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+        "400,422,503":
+          description: BT Payment Paypal clientToken failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClientTokenResponse"
+        "200":
+          description: BT Payment Paypal clientToken successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClientTokenResponse"
+  /customhealthcheck:
+    get:
+      tags:
+      - custom-health-check-controller
+      operationId: getCustomHealthCheck
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentDetailsResponse"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+        "422":
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+components:
+  schemas:
+    ATGAdditionalData:
+      type: object
+      properties:
+        authCode:
+          type: string
+        avsResult:
+          type: string
+        avsResultRaw:
+          type: string
+        maskedCardNumber:
+          type: string
+        cvvResponseCode:
+          type: string
+        authToken:
+          type: string
+        paymentMethod:
+          type: string
+        profileId:
+          type: string
+        creditCardType:
+          type: string
+        expirationMonth:
+          type: string
+        expirationYear:
+          type: string
+        fraudResultType:
+          type: string
+        fraudManualReview:
+          type: string
+        paypalEmail:
+          type: string
+        paypalPayerId:
+          type: string
+        paypalPayerResidenceCountry:
+          type: string
+        paypalPayerStatus:
+          type: string
+        paypalProtectionEligibility:
+          type: string
+        fraudScore:
+          type: integer
+          format: int32
+        scaExemptionRequested:
+          type: string
+        cardAlias:
+          type: string
+        paymentAccountReference:
+          type: string
+        cardPaymentMethod:
+          type: string
+        fundingSource:
+          type: string
+    AtgBillingAddress:
+      type: object
+      properties:
+        address1:
+          type: string
+        address2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        lastName:
+          type: string
+        firstName:
+          type: string
+        phoneNumber:
+          type: string
+        email:
+          type: string
+    Error:
+      type: object
+      properties:
+        key:
+          type: string
+        fields:
+          type: array
+          items:
+            type: object
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: "#/components/schemas/Error"
+    OrderPaymentDetails:
+      type: object
+      properties:
+        orderNumber:
+          type: string
+        currencyCode:
+          type: string
+        paymentStatus:
+          type: array
+          items:
+            $ref: "#/components/schemas/PaymentStatus"
+    PaymentDetailsResponse:
+      type: object
+      properties:
+        data:
+          $ref: "#/components/schemas/ResponseData"
+        error:
+          $ref: "#/components/schemas/ErrorResponse"
+    PaymentStatus:
+      type: object
+      properties:
+        paymentGroupId:
+          type: string
+        paymentType:
+          type: string
+        resultCode:
+          type: string
+        currencyCode:
+          type: string
+        amountAuthorized:
+          type: integer
+          format: int64
+        pspReference:
+          type: string
+        idempotencyKey:
+          type: string
+        fraudManualReview:
+          type: boolean
+        billingAddress:
+          $ref: "#/components/schemas/AtgBillingAddress"
+        additionalData:
+          $ref: "#/components/schemas/ATGAdditionalData"
+        afterpayEventId:
+          type: string
+        afterpayToken:
+          type: string
+        afterpayAuthCreatedDate:
+          type: string
+        afterpayAuthExpiryDate:
+          type: string
+        redirectCheckoutUrl:
+          type: string
+        afterpayInstallment:
+          type: number
+          format: double
+    ResponseData:
+      type: object
+      properties:
+        orderPaymentDetails:
+          $ref: "#/components/schemas/OrderPaymentDetails"
+    Details:
+      type: object
+      properties:
+        redirectResult:
+          type: string
+        billingToken:
+          type: string
+        facilitatorAccessToken:
+          type: string
+        orderID:
+          type: string
+        payerID:
+          type: string
+        paymentID:
+          type: string
+        payload:
+          type: string
+        afterpayToken:
+          type: string
+        MD:
+          type: string
+        PaRes:
+          type: string
+    OrderSummary:
+      type: object
+      properties:
+        checkoutType:
+          type: string
+        orderTotal:
+          type: number
+          format: double
+        amountToBeAuthorized:
+          type: number
+          format: double
+        currency:
+          type: string
+        channelType:
+          type: string
+        afterpayInstallment:
+          type: number
+          format: double
+    PaymentDetailsRequest:
+      type: object
+      properties:
+        paymentData:
+          type: string
+        details:
+          $ref: "#/components/schemas/Details"
+        cartId:
+          type: string
+        orderNumber:
+          type: string
+        profileId:
+          type: string
+        orderSummary:
+          $ref: "#/components/schemas/OrderSummary"
+    ATGAuthRequest:
+      required:
+      - shopperInteraction
+      type: object
+      properties:
+        paymentGroupId:
+          type: string
+        atgProfileId:
+          type: string
+        orderNumber:
+          type: string
+        amount:
+          $ref: "#/components/schemas/Amount"
+        billingAddress:
+          $ref: "#/components/schemas/AtgBillingAddress"
+        paymentMethod:
+          $ref: "#/components/schemas/AtgPaymentMethod"
+        storePaymentMethod:
+          type: boolean
+        shopperInteraction:
+          type: string
+        returnUrl:
+          type: string
+        adyenFraudDetail:
+          $ref: "#/components/schemas/FraudDetail"
+        additionalData:
+          $ref: "#/components/schemas/AdditionalDataRequest"
+        webStoreId:
+          type: string
+        idempotencyKey:
+          type: string
+        browserInfo:
+          $ref: "#/components/schemas/BrowserInfo"
+        executeThreeD:
+          type: string
+        channel:
+          type: string
+        shopperLocale:
+          type: string
+        siteId:
+          type: string
+        enhancedSchemeData:
+          $ref: "#/components/schemas/AdyenEnhancedSchemeData"
+        reauth:
+          type: boolean
+        installments:
+          $ref: "#/components/schemas/Installments"
+        retroCharge:
+          type: boolean
+        editAddress:
+          type: boolean
+        checkoutType:
+          type: string
+        afterpayShippingOptionIdentifier:
+          type: string
+        context:
+          $ref: "#/components/schemas/RequestContext"
+    AdditionalDataRequest:
+      type: object
+      properties:
+        RequestedTestAcquirerResponseCode:
+          type: string
+    AdyenEnhancedSchemeData:
+      type: object
+      properties:
+        customerReference:
+          type: string
+        totalTaxAmount:
+          type: integer
+          format: int64
+        itemDetailLineList:
+          type: array
+          items:
+            $ref: "#/components/schemas/ItemDetailLine"
+    Amount:
+      type: object
+      properties:
+        value:
+          type: string
+        currency:
+          type: string
+    AtgPaymentMethod:
+      type: object
+      properties:
+        type:
+          type: string
+        encryptedCardNumber:
+          type: string
+        encryptedExpiryMonth:
+          type: string
+        encryptedExpiryYear:
+          type: string
+        encryptedSecurityCode:
+          type: string
+        storedPaymentMethodId:
+          type: string
+        giftCardNumber:
+          type: string
+        giftCardPIN:
+          type: string
+        subtype:
+          type: string
+        applePayToken:
+          type: string
+    BrowserInfo:
+      type: object
+      properties:
+        userAgent:
+          type: string
+        acceptHeader:
+          type: string
+        language:
+          type: string
+        colorDepth:
+          type: integer
+          format: int32
+        screenHeight:
+          type: integer
+          format: int32
+        screenWidth:
+          type: integer
+          format: int32
+        timeZoneOffset:
+          type: integer
+          format: int32
+        javaEnabled:
+          type: boolean
+    CommerceItem:
+      type: object
+      properties:
+        commerceItemId:
+          type: string
+        quantity:
+          type: string
+        salePrice:
+          type: string
+        displayName:
+          type: string
+        productUPC:
+          type: string
+        sku:
+          type: string
+        recipientName:
+          type: string
+        recipientEmail:
+          type: string
+        recipientMobile:
+          type: string
+        giftMessage:
+          type: string
+        itemType:
+          type: string
+    ContactInfo:
+      type: object
+      properties:
+        email:
+          type: string
+        phoneNo:
+          type: string
+    FraudDetail:
+      type: object
+      properties:
+        deviceFingerPrint:
+          type: string
+        customerIp:
+          type: string
+        orderDiscountAmount:
+          type: string
+        couponCode:
+          type: string
+        commerceItemCount:
+          type: string
+        commerceItems:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommerceItem"
+        contactInfo:
+          $ref: "#/components/schemas/ContactInfo"
+        shippingDetail:
+          $ref: "#/components/schemas/ShippingDetail"
+        totalItems:
+          type: integer
+          format: int32
+        hasLoyalty:
+          type: boolean
+        daysSinceRegistration:
+          type: integer
+          format: int32
+    Installments:
+      type: object
+      properties:
+        value:
+          type: integer
+          format: int32
+    ItemDetailLine:
+      type: object
+      properties:
+        commodityCode:
+          type: string
+        description:
+          type: string
+        productCode:
+          type: string
+        quantity:
+          type: integer
+          format: int32
+        unitOfMeasure:
+          type: string
+        unitPrice:
+          type: integer
+          format: int64
+        discountAmount:
+          type: integer
+          format: int64
+        totalAmount:
+          type: integer
+          format: int64
+    RequestContext:
+      type: object
+      properties:
+        source:
+          type: string
+        eventType:
+          type: string
+        channelType:
+          type: string
+        gateway:
+          type: string
+    ShippingAddress:
+      type: object
+      properties:
+        address1:
+          type: string
+        address2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        lastName:
+          type: string
+        firstName:
+          type: string
+        neighborhood:
+          type: string
+    ShippingDetail:
+      type: object
+      properties:
+        shippingAddress:
+          $ref: "#/components/schemas/ShippingAddress"
+        shippingMethod:
+          type: string
+        shippingEmail:
+          type: string
+        shippingAmount:
+          type: number
+          format: double
+    ATGAuthResponse:
+      type: object
+      properties:
+        additionalData:
+          $ref: "#/components/schemas/ATGAdditionalData"
+        fraudResult:
+          $ref: "#/components/schemas/FraudResult"
+        pspReference:
+          type: string
+        resultCode:
+          type: string
+        amount:
+          $ref: "#/components/schemas/Amount"
+        merchantReference:
+          type: string
+        merchantAccount:
+          type: string
+        refusalReason:
+          type: string
+        refusalReasonCode:
+          type: string
+        action:
+          $ref: "#/components/schemas/Action"
+        details:
+          type: array
+          items:
+            $ref: "#/components/schemas/AuthResDetails"
+        transactionTimestamp:
+          type: string
+        billingAddress:
+          $ref: "#/components/schemas/BillingAddress"
+    Action:
+      type: object
+      properties:
+        paymentData:
+          type: string
+        paymentMethodType:
+          type: string
+        type:
+          type: string
+        sdkData:
+          $ref: "#/components/schemas/SdkData"
+        url:
+          type: string
+        method:
+          type: string
+        data:
+          $ref: "#/components/schemas/Data"
+        alternativeReference:
+          type: string
+        downloadUrl:
+          type: string
+        expiresAt:
+          type: string
+        reference:
+          type: string
+        totalAmount:
+          $ref: "#/components/schemas/Amount"
+        merchantReference:
+          type: string
+        instructionsUrl:
+          type: string
+        merchantName:
+          type: string
+    AuthResDetails:
+      type: object
+      properties:
+        key:
+          type: string
+        type:
+          type: string
+    BillingAddress:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        address1:
+          type: string
+        address2:
+          type: string
+        neighbourhood:
+          type: string
+        postalCode:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        phoneNumber:
+          type: string
+        email:
+          type: string
+    Data:
+      type: object
+      properties:
+        MD:
+          type: string
+        PaReq:
+          type: string
+        TermUrl:
+          type: string
+    FraudResult:
+      type: object
+      properties:
+        accountScore:
+          type: integer
+          format: int32
+    SdkData:
+      type: object
+      properties:
+        token:
+          type: string
+    Address:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        address1:
+          type: string
+        address2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        postalCode:
+          type: string
+        neighborhood:
+          type: string
+        phoneNumber:
+          type: string
+        email:
+          type: string
+    AuthorizationRequest:
+      type: object
+      properties:
+        orderNumber:
+          type: string
+        paymentHeaderId:
+          type: string
+        profileId:
+          type: string
+        idempotencyKey:
+          type: string
+        paymentMethod:
+          $ref: "#/components/schemas/PaymentMethod"
+        amount:
+          $ref: "#/components/schemas/Amount"
+        checkoutType:
+          type: string
+        context:
+          $ref: "#/components/schemas/RequestContext"
+        shippingAddress:
+          $ref: "#/components/schemas/Address"
+        billingAddress:
+          $ref: "#/components/schemas/Address"
+        deviceData:
+          type: string
+    PaymentMethod:
+      type: object
+      properties:
+        id:
+          type: string
+        legacyId:
+          type: string
+    AuthorizePaymentMethod:
+      type: object
+      properties:
+        clientMutationId:
+          type: string
+        transaction:
+          $ref: "#/components/schemas/Transaction"
+    AuthorizeResponse:
+      type: object
+      properties:
+        authorizePaymentMethod:
+          $ref: "#/components/schemas/AuthorizePaymentMethod"
+        error:
+          type: array
+          items:
+            $ref: "#/components/schemas/GraphQLError"
+    Customer:
+      type: object
+      properties:
+        id:
+          type: string
+    ErrorClassification:
+      type: object
+    GraphQLError:
+      type: object
+      properties:
+        path:
+          type: array
+          items:
+            type: object
+        message:
+          type: string
+        extensions:
+          type: object
+          additionalProperties:
+            type: object
+        locations:
+          type: array
+          items:
+            $ref: "#/components/schemas/SourceLocation"
+        errorType:
+          $ref: "#/components/schemas/ErrorClassification"
+    Payer:
+      type: object
+      properties:
+        payerId:
+          type: string
+        email:
+          type: string
+        billingAgreementId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        payerStatus:
+          type: string
+    PaymentMethodSnapshot:
+      type: object
+      properties:
+        payer:
+          $ref: "#/components/schemas/Payer"
+        authorizationId:
+          type: string
+        customField:
+          type: string
+        payerStatus:
+          type: string
+        sellerProtectionStatus:
+          type: string
+        taxId:
+          type: string
+        transactionFee:
+          type: string
+        description:
+          type: string
+    Shipping:
+      type: object
+      properties:
+        shippingAddress:
+          $ref: "#/components/schemas/Address"
+    SourceLocation:
+      type: object
+      properties:
+        line:
+          type: integer
+          format: int32
+        column:
+          type: integer
+          format: int32
+        sourceName:
+          type: string
+    StatusHistory:
+      type: object
+      properties:
+        status:
+          type: string
+        timestamp:
+          type: string
+        amount:
+          $ref: "#/components/schemas/Amount"
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: string
+        legacyId:
+          type: string
+        createdAt:
+          type: string
+        paymentMethod:
+          $ref: "#/components/schemas/PaymentMethod"
+        amount:
+          $ref: "#/components/schemas/Amount"
+        merchantAccountId:
+          type: string
+        orderId:
+          type: string
+        purchaseOrderNumber:
+          type: string
+        status:
+          type: string
+        statusHistory:
+          type: array
+          items:
+            $ref: "#/components/schemas/StatusHistory"
+        source:
+          type: string
+        shipping:
+          $ref: "#/components/schemas/Shipping"
+        billingAddress:
+          $ref: "#/components/schemas/Address"
+        paymentMethodSnapshot:
+          $ref: "#/components/schemas/PaymentMethodSnapshot"
+        customer:
+          $ref: "#/components/schemas/Customer"
+    PaypalAuthResponse:
+      type: object
+      properties:
+        orderNumber:
+          type: string
+        paymentHeaderId:
+          type: string
+        authToken:
+          type: string
+        authCode:
+          type: string
+        graphqlId:
+          type: string
+        transactionLegacyId:
+          type: string
+        customerId:
+          type: string
+        resultCode:
+          type: string
+        merchantAccount:
+          type: string
+        refusalReason:
+          type: string
+        refusalReasonCode:
+          type: string
+        transactionTimestamp:
+          type: string
+        amount:
+          $ref: "#/components/schemas/Amount"
+        payer:
+          $ref: "#/components/schemas/Payer"
+        billingAddress:
+          $ref: "#/components/schemas/Address"
+    AfterpayCheckoutResponse:
+      type: object
+      properties:
+        orderNumber:
+          type: string
+        token:
+          type: string
+        expires:
+          type: string
+        redirectCheckoutUrl:
+          type: string
+        httpStatusCode:
+          type: integer
+          format: int32
+        errorCode:
+          type: string
+        message:
+          type: string
+        errorId:
+          type: string
+        resultCode:
+          type: string
+    AfterpayAddress:
+      type: object
+      properties:
+        name:
+          type: string
+        line1:
+          type: string
+        line2:
+          type: string
+        area1:
+          type: string
+        area2:
+          type: string
+        region:
+          type: string
+        postcode:
+          type: string
+        countryCode:
+          type: string
+        phoneNumber:
+          type: string
+    AfterpayAmount:
+      type: object
+      properties:
+        amount:
+          type: string
+        currency:
+          type: string
+    AfterpayAuthResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        token:
+          type: string
+        status:
+          type: string
+        created:
+          type: string
+        paymentState:
+          type: string
+        merchantReference:
+          type: string
+        events:
+          type: array
+          items:
+            $ref: "#/components/schemas/AfterpayEvent"
+        paymentEventMerchantReference:
+          type: string
+        installment:
+          type: number
+          format: double
+        errorCode:
+          type: string
+        errorId:
+          type: string
+        message:
+          type: string
+        httpStatusCode:
+          type: integer
+          format: int32
+        orderDetails:
+          $ref: "#/components/schemas/AfterpayOrderDetails"
+        billingAddress:
+          $ref: "#/components/schemas/AtgBillingAddress"
+    AfterpayEvent:
+      type: object
+      properties:
+        id:
+          type: string
+        created:
+          type: string
+        expires:
+          type: string
+        type:
+          type: string
+        amount:
+          $ref: "#/components/schemas/AfterpayAmount"
+    AfterpayOrderDetails:
+      type: object
+      properties:
+        consumer:
+          $ref: "#/components/schemas/Consumer"
+        billing:
+          $ref: "#/components/schemas/AfterpayAddress"
+        shipping:
+          $ref: "#/components/schemas/AfterpayAddress"
+    Consumer:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+        givenNames:
+          type: string
+        surname:
+          type: string
+        email:
+          type: string
+    ClientTokenResponse:
+      type: object
+      properties:
+        createClientToken:
+          $ref: "#/components/schemas/CreateClientToken"
+    CreateClientToken:
+      type: object
+      properties:
+        clientMutationId:
+          type: string
+        clientToken:
+          type: string
