@@ -1,0 +1,9 @@
+{
+  "paymentMethod": {
+    "encryptedCardNumber": "test_4917610000000000",
+    "encryptedExpiryMonth": "test_03",
+    "encryptedExpiryYear": "test_2030",
+    "encryptedSecurityCode": "test_737",
+    "type": "creditCard"
+  }
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+      http://www.liquibase.org/xml/ns/pro
+      http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+      
+    <changeSet id="init_auth_table_owner" author="auth">
+    	<preConditions>
+	   		<tableExists tableName="payment_header"/>
+	   		<and>
+	   			<tableExists tableName="payment_event"/>
+	   		</and>
+	   		<and>
+	   			<tableExists tableName="billing_address"/>
+	   		</and>
+	   	</preConditions>
+    	<sql splitStatements="true" stripComments="true">
+    		ALTER TABLE payment_header OWNER to cloudsqlsuperuser;
+    		ALTER TABLE payment_event OWNER to cloudsqlsuperuser;
+    		ALTER TABLE billing_address OWNER to cloudsqlsuperuser;
+    		ALTER TABLE databasechangelog OWNER to cloudsqlsuperuser;
+    		ALTER TABLE databasechangeloglock OWNER to cloudsqlsuperuser;
+    	</sql>
+    </changeSet>
+</databaseChangeLog>

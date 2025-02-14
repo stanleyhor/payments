@@ -1,0 +1,26 @@
+{
+    "additionalData": {
+        "authCode": "007913",
+        "avsResult": "2 Neither postal code nor address match",
+        "avsResultRaw": "N",
+        "maskedCardNumber": "604410XXXXXX8392",
+        "cvvResponseCode": "0",
+        "authToken": "GQKBT7ZHFMGG3PT5",
+        "paymentMethod": "creditCard",
+        "profileId": "ugp2660951497",
+        "creditCardType": "synchrony_plcc",
+        "fraudResultType": "GREEN",
+        "fraudScore": 0,
+        "cardPaymentMethod": "synchrony_plcc",
+        "fundingSource": "DEBIT"
+    },
+    "pspReference": "VXWTRTXSGTGLNK82",
+    "resultCode": "AUTHORIZED",
+    "amount": {
+        "value": "6296",
+        "currency": "USD"
+    },
+    "merchantReference": "0003363786-ph0000079394",
+    "merchantAccount": "AE_US_Ecom",
+    "transactionTimestamp": "2024-03-07T08:52:23.124272303"
+}

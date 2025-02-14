@@ -1,0 +1,30 @@
+{
+  "additionalData": {
+    "authCode": "096189",
+    "avsResult": "2 Neither postal code nor address match",
+    "avsResultRaw": "2",
+    "maskedCardNumber": "411111XXXXXX1111",
+    "cvvResponseCode": "1",
+    "authToken": "8316256828079526",
+    "paymentMethod": "creditCard",
+    "profileId": "ugp1071938597",
+    "creditCardType": "visa",
+    "expirationMonth": "03",
+    "expirationYear": "2030",
+    "fraudResultType": "GREEN",
+    "fraudScore": 0,
+    "cardAlias": "H986773047236788",
+    "paymentAccountReference": "U2sf6SCil0QA7e8jmNDNSk00HoaH7",
+    "cardPaymentMethod": "visa",
+    "fundingSource": "DEBIT"
+  },
+  "pspReference": "P9QRBX6LXMK2WN82",
+  "resultCode": "AUTHORIZED",
+  "amount": {
+    "value": "315",
+    "currency": "USD"
+  },
+  "merchantReference": "0001259397-pg104493299",
+  "merchantAccount": "AE_US_Ecom",
+  "transactionTimestamp": "2023-07-10T16:16:38.260603095"
+}

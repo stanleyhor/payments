@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+      http://www.liquibase.org/xml/ns/pro
+      http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+
+	<changeSet id="init_auth_payments_grants" author="auth">
+		<preConditions>
+			<tableExists tableName="payment_header" />
+			<and>
+				<tableExists tableName="payment_event" />
+			</and>
+			<and>
+				<tableExists tableName="billing_address" />
+			</and>
+		</preConditions>
+		<sql splitStatements="true" stripComments="true">
+			GRANT ALL ON payment_header TO current_user;
+			GRANT ALL ON payment_event TO current_user;
+			GRANT ALL ON billing_address TO current_user;
+			GRANT ALL ON databasechangelog TO current_user;
+			GRANT ALL ON databasechangeloglock TO current_user;
+		</sql>
+	</changeSet>
+</databaseChangeLog>

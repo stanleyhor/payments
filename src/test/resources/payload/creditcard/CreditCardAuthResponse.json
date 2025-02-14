@@ -1,0 +1,33 @@
+{
+	"additionalData": {
+		"authCode": "010915",
+		"avsResult": "4 AVS not supported for this card type",
+		"maskedCardNumber": "498843XXXXXX4305",
+		"cvvResponseCode": "1",
+		"authToken": "DKS2FBMVTH2ZTL65",
+		"paymentMethod": "creditCard",
+		"profileId": "ugp2800125631",
+		"creditCardType": "visa",
+		"expirationMonth": "03",
+		"expirationYear": "2030",
+		"fraudResultType": "GREEN",
+		"fraudManualReview": "false",
+		"fraudScore": 0,
+		"cardAlias": "A237181803872903",
+		"paymentAccountReference": "F3XZZNSiAskwfSmWBOTHVy8o9z3zN",
+		"cardPaymentMethod": "visacredit",
+		"fundingSource": "CREDIT"
+	},
+	"fraudResult": {
+		"accountScore": 14
+	},
+	"pspReference": "CZR4RR5QGMXNK375",
+	"resultCode": "AUTHORIZED",
+	"amount": {
+		"value": "279800",
+		"currency": "MXN"
+	},
+	"merchantReference": "0003469035-ph0000131277",
+	"merchantAccount": "AE_MX_Ecom",
+	"transactionTimestamp": "2024-07-04T09:39:32.077668693"
+}

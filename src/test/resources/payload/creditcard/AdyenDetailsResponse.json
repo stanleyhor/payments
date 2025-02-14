@@ -1,0 +1,54 @@
+{
+	"additionalData": {
+		"authCode": "067844",
+		"avsResult": "2 Neither postal code nor address match",
+		"cardSummary": "0000",
+		"expiryDate": "3/2030",
+		"cvcResult": "1 Matches",
+		"cardBin": "491761",
+		"recurringDetailReference": "Z5Q4S26NTH2ZTL65",
+		"recurringProcessingModel": "CardOnFile",
+		"paymentMethod": "visa",
+		"shopperReference": "ugp2728546246",
+		"cardPaymentMethod": "visacredit",
+		"cardIssuingCountry": "PL",
+		"fraudResultType": "GREEN",
+		"fraudManualReview": "false",
+		"merchantReference": "0018165446-ph0000189270",
+		"authorisedAmountCurrency": "MXN",
+		"authorisedAmountValue": "231884",
+		"alias": "K636398678307188",
+		"paymentAccountReference": "06FRiD8ymzhwXA494cLtvFmKPHLPO",
+		"issuerBin": "49176100",
+		"fundingSource": "CREDIT",
+		"billingAddress": {
+			"firstName": "dfdf",
+			"lastName": "dfdfd",
+			"address1": "dddddd",
+			"address2": "",
+			"city": "Friona",
+			"state": "TX",
+			"country": "US",
+			"postalCode": "79035",
+			"neighborhood": "",
+			"phoneNumber": "+12345678900",
+			"email": "dddddd@qwq.com"
+		}
+	},
+	"pspReference": "KJ4F5GB2F8CQGS65",
+	"resultCode": "Authorised",
+	"amount": {
+		"value": "231884",
+		"currency": "MXN"
+	},
+	"merchantReference": "0018165446-ph0000189270",
+	"fraudResult": {
+		"accountScore": 10,
+		"results": [
+			{
+				"accountScore": 0,
+				"checkId": 0
+			}
+		]
+	}
+}

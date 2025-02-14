@@ -1,0 +1,70 @@
+{
+  "shopperInteraction": "Ecommerce",
+  "paymentGroupId": "pg104493299",
+  "storePaymentMethod": true,
+  "atgProfileId": "ugp1071938597",
+  "orderNumber": "0001259397",
+  "webStoreId": "02953",
+  "returnUrl": "https://www.ae.com/mx/en/checkout",
+  "billingAddress": {
+    "address1": "737",
+    "address2": "Puebla No. 143",
+    "city": "Cuauht\u00E9moc",
+    "state": "MEX",
+    "postalCode": "06700",
+    "country": "MX",
+    "firstName": "asdasd",
+    "lastName": "asdasdasd",
+    "email": "aepaymentsteam@gmail.com"
+  },
+  "amount": {
+    "currency": "MXN",
+    "value": 50000
+  },
+  "paymentMethod": {
+    "encryptedCardNumber": "test_4111111111111111",
+    "encryptedExpiryMonth": "test_03",
+    "encryptedExpiryYear": "test_2030",
+    "encryptedSecurityCode": "test_737",
+    "type": "creditCard"
+  },
+  "context": {
+    "channelType": "WEB",
+    "eventType": "AUTHORIZE",
+    "source": "ATG",
+    "gateway": "ADYEN"
+  },
+  "adyenFraudDetail": {
+    "deviceFingerPrint": "ryEGX8eZpJ0030000000000000QGeN51KNea00255378005WpYWiKzBGVIVb6YoEmR5S16Goh5Mk004vS8FHjD27A00000qZkTE00000F2e2nkLQB0lgQ6OzVQDG:40",
+    "customerIp": "162.250.148.187",
+    "orderDiscountAmount": "0.0",
+    "couponCode": "",
+    "commerceItemCount": 1,
+    "totalItems": 1,
+    "commerceItems": [
+      {
+        "quantity": 1,
+        "commerceItemId": "ci80851029",
+        "salePrice": "500.0",
+        "displayName": "AE Stacked Jeans e-Gift Card",
+        "productUPC": "099_9923",
+        "sku": "0029971611",
+        "recipientName": "Anastasiia",
+        "giftMessage": "Test2",
+        "recipientEmail": "anastasiia@test.com",
+        "recipientMobile": "525512345676"
+      }
+    ],
+    "contactInfo": {
+      "email": "test@pa.com",
+      "phoneNo": "525512345676"
+    },
+    "shippingDetail": {
+      "shippingAddress": null,
+      "shippingMethod": null,
+      "shippingEmail": null
+    },
+    "daysSinceRegistration": 0
+  },
+  "idempotencyKey": "UIDD-1234566850-123"
+}

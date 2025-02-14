@@ -1,0 +1,129 @@
+mutation AuthorizePayPalAccount($input: AuthorizePayPalAccountInput!) {
+	authorizePayPalAccount(input: $input) {
+		clientMutationId
+    	billingAgreementWithPurchasePaymentMethod {
+	    	id
+	        legacyId
+	        usage
+	        createdAt
+	        details {
+		        ... on PayPalAccountDetails {
+		        	billingAgreementId
+		          	billingAddress {
+		            	fullName
+		            	company
+			            addressLine1
+			            addressLine2
+			            adminArea2
+			            adminArea1
+			            postalCode
+			            countryCode
+			            phoneNumber
+		          	}
+		          	shippingAddress {
+			            fullName
+			            company
+			            addressLine1
+			            addressLine2
+			            adminArea2
+			            adminArea1
+			            postalCode
+			            countryCode
+			            phoneNumber
+		          	}
+		          	email
+		          	phone
+		          	payerId
+		          	cobrandedCardLabel
+		          	origin {
+		            	type
+		          	}
+		          	limitedUseOrderId
+		          	selectedFinancingOption {
+		            	term
+		            	discountPercentage
+		          	}
+			 	}
+			}
+		}
+	    transaction {
+	    	id
+	    	legacyId
+	    	createdAt
+	    	paymentMethod {
+	    		id
+	    		legacyId
+	    	}
+	    	amount {
+	    		value
+	    		currencyIsoCode
+	    	}
+	    	merchantAccountId
+	    	orderId
+	    	purchaseOrderNumber
+	    	status
+	    	statusHistory {
+	    		status
+	    		timestamp
+	    		amount {
+	    			value
+	    			currencyIsoCode
+	    		}
+	    	}
+	      	source
+	      	shipping {
+	      		shippingAddress {
+	      			fullName
+		            company
+		            addressLine1
+		            addressLine2
+		            adminArea2
+		            adminArea1
+		            postalCode
+		            countryCode
+		            phoneNumber
+	          	}
+	      	}
+	      	billingAddress {
+            	fullName
+            	company
+	            addressLine1
+	            addressLine2
+	            adminArea2
+	            adminArea1
+	            postalCode
+	            countryCode
+	            phoneNumber
+          	}
+	      	paymentMethodSnapshot {
+		    	... on PayPalTransactionDetails {
+		    	    payee {
+                  	    email
+                	}
+		          	payer {
+		          		payerId
+		          		email
+		          		billingAgreementId
+		          		firstName
+		          		lastName
+		          	}
+		          	authorizationId
+		          	captureId
+		          	customField
+		          	paymentId
+		          	payerStatus
+		          	sellerProtectionStatus
+		          	taxId
+		          	transactionFee {
+		          		value
+		          		currencyCode
+		          	}
+		          	description
+		        }
+	      	}
+	      	customer {
+	      		id
+	      	}
+	    }
+	}
+}

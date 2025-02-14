@@ -1,0 +1,129 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: payments-team
+  namespace: customer
+  description: Team reponsibile for maintaining payments domain.
+spec:
+  type: team
+  profile:
+    displayName: Payments Team
+    email: group_dtpayments@ae.com
+  members:
+   - hors
+   - gudurus
+   - veeramacht
+   - biletskyv
+   - meesalas
+  parent: group:customer/services-team
+  children: []
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: payments
+  title: Payments
+  namespace: customer
+  description: "The Payments App handles AEO payments via Adyen, Braintree, Aplazo,\
+    \ ..."
+  links:
+   -
+    url: hhttps://wiki.ae.com/display/PAY/Payments+%7C+Team+Homepage
+    title: Payments Home
+    icon: docs
+   -
+    url: https://wiki.ae.com/display/MSAT/MSAT+-+Payments+Domain
+    title: Onboarding Document
+    icon: docs
+   -
+    url: https://wiki.ae.com/display/MSAT/Payments+Domain+Architecture
+    title: Technical documents.
+    icon: docs
+  tags:
+   - adyen
+   - braintree
+   - paypal
+   - credit-card
+   - apple-pay
+   - after-pay
+   - cash-app
+   - klarna
+   - aplazo
+   - oxxo
+   - java
+   - springboot
+spec:
+  owner: group:customer/payments-team
+  domain: customer/services
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: payments-auth-status-update-pubsub
+  title: Payment Auth Status Update Pubsub
+  namespace: customer
+  description: Payment Auth Status Update Pubsub
+spec:
+  type: pubsub
+  lifecycle: production
+  owner: group:customer/payments-team
+  system: customer/payments
+  dependencyOf:
+   - component:customer/aem
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: payments-service-db
+  title: Payments Service Database
+  namespace: customer
+  description: Payments Service Database
+spec:
+  type: database
+  lifecycle: production
+  owner: group:customer/payments-team
+  system: customer/payments
+  dependencyOf:
+   - component:customer/aem
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: payments-auth-service
+  title: Payments Auth Service
+  namespace: customer
+  description: "The Payments Auth Service handles payments authorizations and getting\
+    \ auth token for multiple gateways, like AfterPay, ApplePay and PayPal (Braintree/Adyen)"
+  annotations:
+    backstage.io/kubernetes-namespace: payments-auth-service
+  tags:
+   - java
+   - springboot
+spec:
+  type: service
+  lifecycle: production
+  owner: group:customer/payments-team
+  system: customer/payments
+  providesApis:
+   - payments-auth-service-api
+  dependsOn:
+   - resource:customer/payments-service-db
+   - resource:customer/payments-auth-status-update-pubsub
+  dependencyOf:
+   - resource:customer/payment-auth-pubsub
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: payments-v1-afterpay-token-api
+  title: Payments V1 AfterPay Token API
+  namespace: customer
+  description: This API gets token from AfterPay
+spec:
+  type: openapi
+  lifecycle: production
+  owner: group:customer/payments-team
+  system: customer/payments
+  definition:
+    $text: https://payments-auth-service-prod.int-pr.ae-gcp.io/v3/api-docs.yaml
+--- null

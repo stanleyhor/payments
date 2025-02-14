@@ -1,0 +1,35 @@
+{
+  "additionalData" : {
+    "paymentMethod" : "paypal",
+    "profileId" : "ugp1652104259",
+    "fraudScore" : 0
+  },
+  "resultCode" : "AUTHORIZED",
+  "amount" : {
+    "value" : "5000",
+    "currency" : "USD"
+  },
+  "merchantReference" : "0001827619-pg194655569",
+  "action" : {
+    "paymentData" : "Ab02b4c0!BQABAgCtHwRZCgUiPZ+vH8iK...",
+    "paymentMethodType" : "paypal",
+    "type" : "sdk",
+    "sdkData" : {
+      "token" : "EC-0NB79322B9519403J"
+    }
+  },
+  "transactionTimestamp" : "2024-06-06T18:33:41.454034400",
+  "billingAddress" : {
+    "firstName" : null,
+    "lastName" : null,
+    "address1" : "19 Hot Metal St",
+    "address2" : "Puebla No. 143",
+    "neighbourhood" : null,
+    "postalCode" : "07032",
+    "city" : "New Jersey",
+    "state" : null,
+    "country" : "US",
+    "phoneNumber" : null,
+    "email" : null
+  }
+}

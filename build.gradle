@@ -1,0 +1,268 @@
+plugins {
+  id 'org.springframework.boot' version '3.3.4'
+  id 'io.spring.dependency-management' version '1.1.6'
+  id 'java'
+  id 'org.sonarqube' version '5.1.0.4882'
+  id 'com.google.cloud.tools.jib' version '3.4.3'
+  id 'checkstyle'
+  id 'jacoco'
+  id 'com.diffplug.spotless' version '6.25.0'
+}
+
+def yamlAdditionalExcludes = 'src/**/newrelic.yml'
+apply from: "https://artifactory.ae.com/artifactory/libs-dependencies-local/com/aeo/gradle/aeospotless.gradle"
+
+group = 'com.ecomm.payments'
+version = (findProperty('version') == 'unspecified') ? '0.0.1-SNAPSHOT' : version
+
+java {
+  sourceCompatibility = '21'
+}
+
+springBoot {
+    buildInfo {
+        version = System.getenv('BUILD_NAME') ?: project.findProperty('version')
+    }
+}
+
+sourceSets {
+
+  componentTest {
+    java {
+      srcDir 'src/componentTest/java'
+    }
+    resources {
+      srcDir 'src/componentTest/resources'
+    }
+    compileClasspath += sourceSets.main.runtimeClasspath
+  }
+
+}
+
+jib {
+    container {
+        user '10000:10000'
+            jvmFlags = ['-javaagent:/app/libs/newrelic-agent-8.14.0.jar',
+                  '-Dnewrelic.config.file=/app/resources/newrelic.yml',
+                  '-Xms2048m', '-Xmx2048m', '-XX:NewRatio=1']
+            labels = [pillar:'customer-payments']
+    }
+    from {
+      image "us-east4-docker.pkg.dev/aeo-gke-terraform-f793/aeo-base-images/temurin-21-slim:latest"
+    }
+}
+
+repositories {
+  maven {
+    url "https://artifactory.ae.com/artifactory/libs-release/"
+  }
+}
+
+ext {
+  set('springCloudVersion', "2023.0.3")
+  set('springCloudGcpVersion', "5.6.0")
+  set('springBootAdminVersion', "3.3.3")
+  set('newrelicVersion', "8.14.0")
+  set('openApiVersion', "2.6.0")
+  //CVE fixes
+  set('snakeyaml.version', "2.2")
+  // component testing dependency
+  set('cucumberVersion', "7.18.1")
+}
+
+dependencies {
+  implementation (
+      ['org.springframework.boot:spring-boot-starter-web'],
+      ['org.springframework.boot:spring-boot-starter-graphql'],
+      ['org.springframework.boot:spring-boot-starter-webflux'],
+      ['org.springframework.boot:spring-boot-starter-security'],
+      ['org.apache.httpcomponents.client5:httpclient5'],
+      ['org.springframework.integration:spring-integration-core'],
+
+      // pubsub
+      ['com.google.cloud:spring-cloud-gcp-starter-pubsub'],
+      ['com.aeo:aeo-gcp-pubsub:2.2'],
+
+      //GCP
+      ['com.google.cloud:spring-cloud-gcp-starter-secretmanager'],
+
+      // database
+      ['org.postgresql:postgresql'],
+      ['com.google.cloud.sql:postgres-socket-factory'],
+      ['org.springframework.boot:spring-boot-starter-data-jpa'],
+      ['io.hypersistence:hypersistence-utils-hibernate-63:3.8.2'],
+      ['org.liquibase:liquibase-core'],
+
+      // resiliency
+      ["org.springframework.boot:spring-boot-starter-aop"],
+      ['org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'],
+
+      // validation
+      ['org.springframework.boot:spring-boot-starter-validation'],
+
+      // monitoring
+      ["org.springframework.boot:spring-boot-starter-actuator"],
+      ["com.newrelic.agent.java:newrelic-api:${newrelicVersion}"],
+      ["com.newrelic.agent.java:newrelic-agent:${newrelicVersion}"],
+      ['com.aeo:spring-boot-request-correlator:1.9'],
+
+      // documentation
+      ["org.springdoc:springdoc-openapi-starter-webmvc-ui:${openApiVersion}"],
+
+
+      // logging
+      ["com.aeo:logging-spring-boot:3.2.0"],
+
+      // chaos monkey
+      ["de.codecentric:chaos-monkey-spring-boot:3.1.0"],
+
+      // payments data model
+      ["com.ecomm.payments:payments-data-model:3.3.4"],
+
+      // spring admin
+      ['de.codecentric:spring-boot-admin-starter-client'],
+
+  )
+  compileOnly (
+      ["org.projectlombok:lombok"],
+      ["org.springframework.boot:spring-boot-devtools"]
+  )
+
+  runtimeOnly 'io.micrometer:micrometer-registry-new-relic'
+
+  testImplementation(
+    ['org.springframework.boot:spring-boot-starter-test'],
+    ['org.junit.jupiter:junit-jupiter'],
+    ['org.mockito:mockito-junit-jupiter']
+    )
+
+  developmentOnly 'org.springframework.boot:spring-boot-devtools'
+  annotationProcessor 'org.projectlombok:lombok'
+  componentTestAnnotationProcessor 'org.projectlombok:lombok'
+  componentTestCompileOnly 'org.projectlombok:lombok'
+
+  testRuntimeOnly(
+      ['org.assertj:assertj-core'],
+      ['org.junit.vintage:junit-vintage-engine'],
+      ['org.junit.platform:junit-platform-launcher']
+    )
+
+  componentTestImplementation ('com.aeo:salad-testing-framework:0.1.84') {
+    exclude group: 'org.slf4j', module: 'slf4j-simple'
+  }
+
+  componentTestImplementation (
+      ['org.junit.vintage:junit-vintage-engine'],
+      ["io.cucumber:cucumber-java:${cucumberVersion}"],
+      ["io.cucumber:cucumber-junit:${cucumberVersion}"],
+      ['io.rest-assured:spring-web-test-client:5.4.0'],
+      ['com.jayway.jsonpath:json-path:2.9.0'],
+      ['jakarta.validation:jakarta.validation-api'],
+      ['org.assertj:assertj-core:3.25.3'],
+      ['io.qameta.allure:allure-cucumber7-jvm:2.27.0']
+  )
+}
+
+dependencyManagement {
+  imports {
+    mavenBom "com.google.cloud:spring-cloud-gcp-dependencies:${springCloudGcpVersion}"
+    mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    mavenBom "de.codecentric:spring-boot-admin-dependencies:${springBootAdminVersion}"
+  }
+}
+
+test {
+  useJUnitPlatform()
+  testLogging {
+        events "passed", "skipped", "failed"
+    }
+    testLogging {
+        exceptionFormat = 'full'
+    }
+    afterSuite { desc, result ->
+        if (!desc.parent) {
+            println "Results: (${result.testCount} tests, ${result.successfulTestCount} successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)"
+            boolean skipTests = Boolean.parseBoolean(project.findProperty('SKIP_TESTS') ?: "false")
+            if (result.testCount == 0 && !skipTests) {
+                throw new IllegalStateException("No tests were found. Failing the build")
+            }
+        }
+    }
+    finalizedBy jacocoTestReport
+}
+
+sonar {
+  properties {
+    property "sonar.projectKey", "MP-PAS"
+    property "sonar.projectName", "PAYMENT AUTHORIZATION Service Microservices Application"
+    property "sonar.sourceEncoding", "iso-8859-1"
+    property "sonar.coverage.exclusions", "**/model/*,**/model/**,**/config/*,**/rest/**,**/payments/*Application.java"
+    property "sonar.sources","src/main/java/com/ecomm/payments"
+    property "sonar.exclusions", "src/test/java/**/*,**/config/*"
+    property "sonar.test.exclusions", "src/test/java/**/*.java"
+    property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml"
+    property "sonar.login","admin"
+    property "sonar.password","password"
+  }
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+        csv.required = false
+        html.destination = file("${buildDir}/reports/code-coverage")
+    }
+}
+
+rootProject.tasks.named("processComponentTestResources") {
+  duplicatesStrategy = 'include'
+}
+
+task componentTest(type: Test) {
+  ignoreFailures = true
+  description = "Runs Component Tests"
+  testClassesDirs = sourceSets.componentTest.output.classesDirs
+  classpath += sourceSets.componentTest.runtimeClasspath
+}
+
+componentTest {
+  def propertyNames = [
+      "cucumber.options",
+      "cucumber.filter.tags",
+      "profile",
+      "apisgEnabled",
+      "prePopulateDDFEnabled",
+      "env",
+      "gcp.filtering.property",
+      "spreadsheetId",
+      "currentProject",
+      "shortPlanName",
+      "resultsUrl",
+      "useExamplesForNames"
+  ]
+
+  for (i in propertyNames) {
+    def newValue = System.getProperty(i as String)
+    if (newValue != null)
+      systemProperty i as String, newValue
+  }
+  if (System.getProperty("env") == null)
+    systemProperty "env", "sit"
+
+  useJUnit()
+  testLogging {
+    events "passed", "skipped", "failed"
+  }
+  testLogging {
+    exceptionFormat = 'full'
+  }
+  afterSuite { desc, result ->
+    if (!desc.parent) {
+      println "Results: (${result.testCount} tests, ${result.successfulTestCount} successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)"
+      boolean skipTests = Boolean.parseBoolean(project.findProperty('SKIP_TESTS') ?: "false")
+      if (result.testCount == 0 && !skipTests) {
+        throw new IllegalStateException("No tests were found. Failing the build")
+      }
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+    "authorizePayPalAccount": {
+        "clientMutationId": "e0280b3a-b686-4ada-a9ed-c103d01ff406",
+        "billingAgreementWithPurchasePaymentMethod": {
+            "id": "cGF5bWVudG1ldGhvZF9wcF8xOXduM3c5Yw",
+            "legacyId": "19wn3w9c",
+            "usage": "MULTI_USE",
+            "createdAt": "2024-04-19T16:45:05.000000Z",
+            "details": {
+                "billingAgreementId": "B-616293169W476181E",
+                "email": "american_eagle_personal@gmail.com",
+                "phone": null,
+                "payerId": "MB35SDBBE76FY",
+                "cobrandedCardLabel": null,
+                "origin": null,
+                "limitedUseOrderId": null,
+                "selectedFinancingOption": null
+            }
+        },
+        "transaction": {
+            "id": "dHJhbnNhY3Rpb25fcjNxeDkzYTI",
+            "legacyId": "r3qx93a2",
+            "createdAt": "2024-04-19T16:45:02.000000Z",
+            "paymentMethod": null,
+            "amount": {
+                "value": "25.00",
+                "currencyIsoCode": "USD"
+            },
+            "merchantAccountId": "americaneagle",
+            "orderId": "0003291441",
+            "purchaseOrderNumber": "ph0000094865",
+            "status": "AUTHORIZED",
+            "statusHistory": [
+                {
+                    "status": "AUTHORIZED",
+                    "timestamp": "2024-04-19T16:45:05.000000Z",
+                    "amount": {
+                        "value": "25.00",
+                        "currencyIsoCode": "USD"
+                    }
+                }
+            ],
+            "source": "API",
+            "shipping": {
+                "shippingAddress": {
+                    "fullName": "Test Test",
+                    "company": null,
+                    "addressLine1": "25A S 25th St",
+                    "addressLine2": "Apt 123",
+                    "adminArea1": "PA",
+                    "adminArea2": "Pittsburgh",
+                    "postalCode": "15203",
+                    "countryCode": "US",
+                    "phoneNumber": null
+                }
+            },
+            "billingAddress": {
+                "fullName": null,
+                "company": null,
+                "addressLine1": "1129 E. Dominguesz ST",
+                "addressLine2": "GAIA H2 INC",
+                "adminArea1": "CA",
+                "adminArea2": "carson",
+                "postalCode": "90746",
+                "countryCode": "US",
+                "phoneNumber": null
+            },
+            "paymentMethodSnapshot": {
+                "payer": {
+                    "payerId": "MB35SDBBE76FY",
+                    "email": "american_eagle_personal@gmail.com",
+                    "billingAgreementId": null,
+                    "firstName": "AE",
+                    "lastName": "Developer"
+                },
+                "authorizationId": "71080228HC6005507",
+                "customField": null,
+                "payerStatus": "VERIFIED",
+                "sellerProtectionStatus": "ELIGIBLE",
+                "taxId": null,
+                "transactionFee": null,
+                "description": null
+            },
+            "customer": {
+                "id": "Y3VzdG9tZXJfODI3NzI5NTM1NjQ"
+            }
+        }
+    }
+}

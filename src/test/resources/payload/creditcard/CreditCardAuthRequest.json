@@ -1,0 +1,53 @@
+{
+    "shopperInteraction": "Ecommerce",
+    "paymentGroupId": "ph0000191390",
+    "storePaymentMethod": true,
+    "atgProfileId": "ugp2729498290",
+    "orderNumber": "0018169190",
+    "webStoreId": "02953",
+    "billingAddress": {
+        "firstName": "dfdf",
+        "lastName": "dfdfd",
+        "address1": "dddddd",
+        "address2": "",
+        "city": "Friona",
+        "state": "TX",
+        "country": "US",
+        "postalCode": "79035",
+        "neighborhood": "",
+        "phoneNumber": "+12345678900",
+        "email": "dddddd@qwq.com"
+    },
+    "amount": {
+        "value": "2431",
+        "currency": "USD"
+    },
+    "paymentMethod": {
+        "type": "creditCard",
+        "encryptedCardNumber": "eyJhbGciOiJSU0EtT0FFUC0yNTYiLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIiwidmVyc2lvbiI6IjEifQ.Y74hVjhCeNHnmoCGIjeTO85n2nuWsxWTBi7SaUJwZzOdUFBEcQbGt_WgnILYNI1WjtWfPZqpiCNdLfB8qsvjArO-Ugg11Y44Vkazev1t8z_e1OUJGmUqmSamRVTpVhckmOwlj0ICyTLhXETvoiglJRMhxCZ9G9ayu0Oh9hNSmZ3JktM0o9xJk-bRw0xXqTaEdw5tji6eAXDY52sIatDPOJQbGVvQOJ3xsQ9wx_7MXNNvcIAME_I2qRdY9UP1ls9P3X7s2MpIv4tFNeRB1WGowyw681M8kWtYHDL0iT7oqRuE63HeY1nTjE5SMdnsL6bN80SkFWJoGuklHfwkcwOK6Q.UA4_CYePXzDCcnHyVMda4g.gzZmMim3XkAT4DKb6fn1nuF8ciyXQ96pbmIYX9j9hFrMZqRlJH57ntz1NoojdLzdBzuUsIK1wt4GdWrgsXgcORL-aJEswY0M7irrtudAcIY.MaEf4KkqNHotq_4PYLSaCQBjpc-hYgU1KtRH1GPnDSc",
+        "encryptedSecurityCode": "eyJhbGciOiJSU0EtT0FFUC0yNTYiLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIiwidmVyc2lvbiI6IjEifQ.bEteoid7ASDj60mhPW8pylypRg7wKQErVOxSskUOdMjRwfsam4-Tm4ewqBRcnoqlNNSNU1U0vTuFuvFrNdupXMGsBiXEyw0nFM0k3q1OAPj23n_Nz_3olfPTbdDXhAHTiG2QKvObz1cFtSnxZeFZoz5d44JhE0Lhv89LblmsrIZ7-k99610FqZG0X4typP_x1uW-7-4ciDVN14zbSI14uRdzgAoSt_PnyAuWClTwsrEasnTXgS5HdA-Ry7DzmsYXcVoE8WySnbUFivGa5kFpiJPLI7w5ppwbdji6cA5IjniYZuXL7wmgbnncvGjjsnck6_XwuRgEEY_GvTnyqni-CA.chTLYtP6nGkD-0hVb0y24A.KeFz0TUUbNDbpUpHg9IANPLUhoj4WfTDGpvoYjVSx_sdHNjTUhLypbEMflK-cdSUN1__VAauhoETx1fVw-Pg7A.ISSH646rlhP-huXXIvtv5YhV_DGerqW3IxNXYrINe38"
+    },
+    "context": {
+        "channelType": "IOS_APP",
+        "eventType": "AUTHORIZE",
+        "gateway": "ADYEN"
+    },
+    "idempotencyKey": "1788c08e-be57-475uii-a568c-c82477a89acf",
+    "editAddress": true,
+    "enhancedSchemeData": {
+        "customerReference": "ugp2729498224",
+        "totalTaxAmount": 0.0,
+        "itemDetailLineList": [
+            {
+                "commodityCode": "0028260339",
+                "description": "AE Graphic Tee",
+                "productCode": "1305",
+                "quantity": 1,
+                "unitOfMeasure": "EACH",
+                "unitPrice": 2495,
+                "totalAmount": 2495
+            }
+        ]
+    },
+    "reauth": true
+}

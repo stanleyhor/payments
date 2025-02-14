@@ -1,0 +1,42 @@
+management:
+  endpoint:
+    chaosmonkey:
+      enabled: true
+    chaosmonkeyjmx:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include:
+         - health
+         - info
+         - metrics
+         - chaosmonkey
+chaos:
+  monkey:
+    enabled: true
+    assaults:
+      level: 2
+      latency-active: false
+      latency-range-start: 15000
+      latency-range-end: 45000
+      exceptions-active: false
+      exception:
+        type: java.lang.RuntimeException
+        arguments:
+         -
+          class-name: java.lang.String
+          value: Chaos
+      memory-active: false
+      memory-milliseconds-hold-filled-memory: 30000
+      memory-milliseconds-wait-next-increase: 100
+      memory-fill-target-fraction: 0.9
+      memory-fill-increment-fraction: 0.6
+      kill-application-active: false
+    watcher:
+      component: false
+      controller: false
+      repository: false
+      rest-controller: true
+      service: true
+--- null

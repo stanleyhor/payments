@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+      http://www.liquibase.org/xml/ns/pro
+      http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+
+	<changeSet id="init_billing_address_table" author="auth">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="billing_address" />
+			</not>
+		</preConditions>
+		<sql splitStatements="true" stripComments="true">
+			CREATE TABLE IF NOT EXISTS billing_address (
+			billing_address_id bigserial not null,
+			first_name varchar(50),
+			middle_name varchar(50),
+			last_name varchar(50),
+			address1 varchar(100),
+			address2 varchar(100),
+			address3 varchar(100),
+			city varchar(100),
+			county varchar(100),
+			state varchar(100),
+			country varchar(50),
+			postal_code varchar(20),
+			phone_number varchar(25),
+			email varchar(255),
+			CONSTRAINT billing_address_pkey PRIMARY KEY
+			(billing_address_id)
+			);
+		</sql>
+	</changeSet>
+</databaseChangeLog>

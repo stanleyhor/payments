@@ -1,0 +1,18 @@
+applications:
+  - name: payments-auth-service
+    memory: 2G
+    instances: ((min-instances))
+    timeout: 180
+    buildpacks:
+      - java_buildpack_offline_4_32_1
+    path: build/libs/payments-auth-service-0.0.1-SNAPSHOT.jar
+    health-check-type: port
+    services:
+      - pcf-to-payment-authorization-connection
+      - payment-newrelic
+      - payment-rabbitmq
+      - payment-autoscaler
+      - payment-splunk
+    env:
+      NEW_RELIC_APP_NAME: payments-auth-service-((env))
+      JBP_CONFIG_OPEN_JDK_JRE: '{jre: { version: 14.+ }}'
