@@ -105,7 +105,8 @@ spec:
   owner: group:customer/payments-team
   system: customer/payments
   providesApis:
-   - payments-auth-api
+   - payments-v1-afterpay-token-api
+   - payments-v1-paypal-token-api
   dependsOn:
    - resource:customer/payments-service-db
    - resource:customer/payments-auth-status-update-pubsub
