@@ -13,20 +13,18 @@ spec:
   definition:
     $text: https://github.com/stanleyhor/payments/blob/master/api-docs.yaml
   dependsOn:
-   - resource:customer/afterpay-token-api
+   - resource:customer/afterpay-api
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
-  name: afterpay-token-api
-  title: AfterPay Token API
+  name: afterpay-api
+  title: AfterPay API
   namespace: customer
-  description: AfterPay Token API
+  description: AfterPay API
 spec:
   type: external-api
   lifecycle: production
   owner: group:customer/payments-team
   system: customer/payments
-  dependencyOf:
-   - component:customer/aem
