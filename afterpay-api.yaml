@@ -17,20 +17,6 @@ spec:
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Resource
-metadata:
-  name: afterpay-token-api
-  title: AfterPay Token API
-  namespace: customer
-  description: AfterPay Token API
-spec:
-  type: third-party
-  lifecycle: production
-  owner: group:customer/afterpay-team
-  system: customer/payments
-
----
-apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
   name: afterpay-team
@@ -42,3 +28,17 @@ spec:
     displayName: AfterPay Team
   parent: group:customer/services-team
   children: []
+  
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: afterpay-token-api
+  title: AfterPay Token API
+  namespace: customer
+  description: AfterPay Token API
+spec:
+  type: third-party
+  lifecycle: production
+  owner: group:customer/afterpay-team
+  system: customer/payments
