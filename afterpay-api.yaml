@@ -12,3 +12,21 @@ spec:
   system: customer/payments
   definition:
     $text: https://github.com/stanleyhor/payments/blob/master/api-docs.yaml
+  consumesApi:
+   - afterpay-checkouts-api
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: afterpay-checkouts-api
+  title: AfterPay Checkouts API
+  namespace: customer
+  description: AfterPay provides API token
+spec:
+  type: website
+  lifecycle: production
+  owner: group:customer/payments-team
+  system: customer/payments
+  definition:
+    $text: https://developers.afterpay.com/docs/api/reference/checkouts/operations/create-a-v-2-checkout
