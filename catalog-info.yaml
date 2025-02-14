@@ -109,8 +109,6 @@ spec:
   dependsOn:
    - resource:customer/payments-service-db
    - resource:customer/payments-auth-status-update-pubsub
-  dependencyOf:
-   - resource:customer/payment-auth-pubsub
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Location
