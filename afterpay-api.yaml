@@ -10,6 +10,8 @@ spec:
   lifecycle: production
   owner: group:customer/payments-team
   system: customer/payments
+  dependencyOf:
+    - payments-v1-afterpay-token-api
 
 ---
 apiVersion: backstage.io/v1alpha1
