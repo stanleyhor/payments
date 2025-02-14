@@ -13,7 +13,7 @@ spec:
   definition:
     $text: https://github.com/stanleyhor/payments/blob/master/api-docs.yaml
   consumesApi:
-   - afterpay-checkouts-api
+   - afterpay-token-api
 
 ---
 apiVersion: backstage.io/v1alpha1
