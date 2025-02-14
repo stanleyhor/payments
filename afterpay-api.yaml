@@ -13,23 +13,32 @@ spec:
   definition:
     $text: https://github.com/stanleyhor/payments/blob/master/api-docs.yaml
   consumesApi:
-   - afterpay-token-api
+   - resource:customer/afterpay-token-api
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Resource
 metadata:
   name: afterpay-token-api
   title: AfterPay Token API
   namespace: customer
-  description: "The Payments Auth Service handles payments authorizations and getting\
-    \ auth token for multiple gateways, like AfterPay, ApplePay and PayPal (Braintree/Adyen)"
-  annotations:
-    backstage.io/kubernetes-namespace: payments-auth-service
-  links:
-    - https://developers.afterpay.com/docs/api/reference/checkouts/operations/create-a-v-2-checkout
+  description: AfterPay Token API
 spec:
-  type: service
+  type: third-party
   lifecycle: production
-  owner: group:customer/payments-team
+  owner: group:customer/afterpay-team
   system: customer/payments
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: afterpay-team
+  namespace: customer
+  description: AfterPay Team reponsibile for maintaining payments domain.
+spec:
+  type: team
+  profile:
+    displayName: AfterPay Team
+  parent: group:customer/services-team
+  children: []
