@@ -12,7 +12,7 @@ spec:
   system: customer/payments
   definition:
     $text: https://github.com/stanleyhor/payments/blob/master/api-docs.yaml
-  consumesApi:
+  dependsOn:
    - resource:customer/afterpay-token-api
 
 ---
