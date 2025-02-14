@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: payments-v1-paypal-token-api
+  title: Payments V1 PayPal Token API
+  namespace: customer
+  description: This API gets token from PayPal
+spec:
+  type: openapi
+  lifecycle: production
+  owner: group:customer/payments-team
+  system: customer/payments
+  definition:
+    $text: https://github.com/stanleyhor/payments/blob/master/api-docs.yaml

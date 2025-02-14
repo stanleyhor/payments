@@ -113,17 +113,13 @@ spec:
    - resource:customer/payment-auth-pubsub
 ---
 apiVersion: backstage.io/v1alpha1
-kind: API
+kind: Location
 metadata:
-  name: payments-v1-afterpay-token-api
-  title: Payments V1 AfterPay Token API
+  name: payments-auth-api
+  title: Payments Auth API
   namespace: customer
-  description: This API gets token from AfterPay
+  description: Payments Auth APIs
 spec:
-  type: openapi
-  lifecycle: production
-  owner: group:customer/payments-team
-  system: customer/payments
-  definition:
-    $text: http://localhost:8080/v3/api-docs.yaml
---- 
+  targets: 
+   - ./afterpay-api.yaml
+   - ./paypal-api.yaml
