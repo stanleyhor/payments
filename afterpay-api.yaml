@@ -53,5 +53,22 @@ spec:
   lifecycle: production
   owner: group:customer/afterpay-team
   system: customer/afterpay
-  definition:
-    $text: https://github.com/stanleyhor/payments/blob/master/api-docs.yaml
+  definition: |
+    openapi: "3.0.0"
+    info:
+      version: 1.0.0
+      title: After APIs
+      license:
+        name: MIT
+    servers:
+      - url: https://api.us-sandbox.afterpay.com/v2
+    paths:
+      /checkouts:
+        post:
+          summary: Create token
+          operationId: createToken
+          tags:
+            - token
+          responses:
+            '201':
+              description: Null response
