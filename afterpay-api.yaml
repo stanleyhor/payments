@@ -29,9 +29,9 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: afterpay-api-service
-  title: After Pay API Service
+  title: AfterPay API Service
   namespace: customer
-  description: "After APIs"
+  description: AfterPay API Service
 spec:
   type: service
   lifecycle: production
@@ -42,7 +42,7 @@ spec:
 
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: API
 metadata:
   name: afterpay-api
   title: AfterPay API
@@ -51,7 +51,7 @@ metadata:
 spec:
   type: service
   lifecycle: production
-  owner: group:customer/payments-team
-  system: customer/payments
+  owner: group:customer/afterpay-team
+  system: customer/afterpay
   dependencyOf:
     - component:afterpay-api-service
