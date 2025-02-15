@@ -108,6 +108,7 @@ spec:
    - payments-v1-afterpay-token-api
    - payments-v1-afterpay-auth-api
    - payments-v1-paypal-token-api
+   - payments-v1-paypal-auth-api
   consumesApis:
    - afterpay-api
    - braintree-paypal-api
