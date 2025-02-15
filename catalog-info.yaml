@@ -124,5 +124,5 @@ metadata:
 spec:
   targets: 
    - ./afterpay-api.yaml
-   - ./paypal-api.yaml
+   - ./braintree-paypal-api.yaml
    - ./payments-auth-api.yaml

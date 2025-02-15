@@ -1,0 +1,57 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: braintree-paypal-team
+  namespace: customer
+  description: Braintree PayPal team which handles PayPal transactions.
+spec:
+  type: team
+  profile:
+    displayName: Braintree PayPal Team
+  parent: group:customer/services-team
+  children: []
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: braintree-paypal
+  title: Braintree PayPal
+  namespace: customer
+  description: Braintree PayPal Company
+  tags:
+   - braintree-paypal
+spec:
+  owner: group:customer/braintree-paypal-team
+  domain: customer/services
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: braintree-paypal-api-service
+  title: Braintree PayPal API Service
+  namespace: customer
+  description: Braintree PayPal API Service
+spec:
+  type: service
+  lifecycle: production
+  owner: group:customer/braintree-paypal-team
+  system: customer/braintree-paypal
+  providesApis:
+   - braintree-paypal-api
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: braintree-paypal-api
+  title: Braintree PayPal API
+  namespace: customer
+  description: Braintree PayPal API
+spec:
+  type: openapi
+  lifecycle: production
+  owner: group:customer/braintree-paypal-team
+  system: customer/braintree-paypal
+  definition:
+    $text: https://github.com/stanleyhor/payments/blob/master/api-docs.yaml
