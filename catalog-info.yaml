@@ -125,3 +125,4 @@ spec:
   targets: 
    - ./afterpay-api.yaml
    - ./paypal-api.yaml
+   - ./payments-auth-api.yaml
