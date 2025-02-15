@@ -109,6 +109,7 @@ spec:
    - payments-v1-paypal-token-api
   consumesApis:
    - afterpay-api
+   - braintree-paypal-api
   dependsOn:
    - resource:customer/payments-service-db
    - resource:customer/payments-auth-status-update-pubsub
