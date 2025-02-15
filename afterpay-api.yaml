@@ -72,4 +72,4 @@ spec:
   definition:
     $text: https://github.com/stanleyhor/payments/blob/master/api-docs.yaml
   dependsOn:
-   - api:customer/afterpay-api
+   - component:customer/afterpay-api
