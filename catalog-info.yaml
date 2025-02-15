@@ -107,6 +107,7 @@ spec:
   providesApis:
    - payments-v1-afterpay-token-api
    - payments-v1-paypal-token-api
+   - afterpay-api
   dependsOn:
    - resource:customer/payments-service-db
    - resource:customer/payments-auth-status-update-pubsub
