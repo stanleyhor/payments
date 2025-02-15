@@ -1,0 +1,30 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: payments-v1-afterpay-token-api
+  title: /payments/v1/afterpay/token
+  namespace: customer
+  description: This API gets token from AfterPay
+spec:
+  type: openapi
+  lifecycle: production
+  owner: group:customer/payments-team
+  system: customer/payments
+  definition:
+    $text: https://github.com/stanleyhor/payments/blob/master/api-docs.yaml
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: payments-v1-afterpay-auth-api
+  title: /payments/v1/afterpay/auth
+  namespace: customer
+  description: This API authorize payments with AfterPay
+spec:
+  type: openapi
+  lifecycle: production
+  owner: group:customer/payments-team
+  system: customer/payments
+  definition:
+    $text: https://github.com/stanleyhor/payments/blob/master/api-docs.yaml

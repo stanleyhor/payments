@@ -57,7 +57,7 @@ spec:
     openapi: "3.0.0"
     info:
       version: 1.0.0
-      title: AfterPal APIs
+      title: AfterPay APIs
       license:
         name: MIT
     servers:
