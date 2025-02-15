@@ -53,5 +53,5 @@ spec:
   lifecycle: production
   owner: group:customer/afterpay-team
   system: customer/afterpay
-  dependencyOf:
-    - component:afterpay-api-service
+  definition:
+    $text: https://github.com/stanleyhor/payments/blob/master/api-docs.yaml
