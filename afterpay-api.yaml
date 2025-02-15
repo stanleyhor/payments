@@ -57,7 +57,7 @@ spec:
     openapi: "3.0.0"
     info:
       version: 1.0.0
-      title: After APIs
+      title: AfterPal APIs
       license:
         name: MIT
     servers:
@@ -69,6 +69,33 @@ spec:
           operationId: createToken
           tags:
             - token
+          responses:
+            '201':
+              description: Null response
+      /payments/auth:
+        post:
+          summary: Auth payment
+          operationId: authPayment
+          tags:
+            - auth
+          responses:
+            '201':
+              description: Null response
+      /payments/token:
+        post:
+          summary: Reverse Auth payment
+          operationId: reverseAuthPayment
+          tags:
+            - auth
+          responses:
+            '201':
+              description: Null response
+      /reversal:
+        post:
+          summary: Reverse Auth payment
+          operationId: reverseAuthPayment
+          tags:
+            - auth
           responses:
             '201':
               description: Null response
